@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@theme{
+  --font-display: "Satoshi", "sans-serif";
+  --color-brand: oklch(0.5524 0.2172 49.1399);
+  --color-brand-light: oklch(0.6993 0.1753 25.3300);
+  --color-brand-dark: oklch(0.4461 0.1985 54.0857);
+}
+body {
+  background-color: var(--color-stone-200);
+}
