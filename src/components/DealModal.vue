@@ -1,6 +1,6 @@
 <template>
-  <div v-if="visible" class="modal-overlay">
-    <div class="modal-content rounded-xl flex flex-col relative bg-stone-50">
+  <div v-if="visible" class="modal-overlay" @click="closeModal">
+    <div class="modal-content rounded-xl flex flex-col relative bg-stone-50" @click.stop>
       <button class="close-button" @click="closeModal">
         <v-icon name="io-close" class="block size-8 text-white drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]" aria-hidden="true" />
       </button>

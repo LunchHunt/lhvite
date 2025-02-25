@@ -100,6 +100,7 @@ const closeMenu = () => {
   right: 0;
   top: 0;
   width: 75vw;
+  max-width: 400px;
   height: 100vh;
   /* background: #111111; */
   padding: 0px 40px;

@@ -9,13 +9,17 @@
       <v-icon :name="item.icon" class="nav-icon" />
       <span class="nav-label">{{ item.name }}</span>
     </div>
+    <SearchModal v-if="isModalOpen" @close="isModalOpen = false" />
   </nav>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import SearchModal from './SearchModal.vue';
 
 const router = useRouter();
+const isModalOpen = ref(false);
 
 const menuItems = [
   { name: 'Home', icon: 'co-home', route: '/' },
@@ -28,8 +32,7 @@ function handleClick(item) {
   if (item.route) {
     router.push(item.route);
   } else if (item.action === 'openModal') {
-    // Implement your modal opening logic here
-    console.log('Open search modal');
+    isModalOpen.value = true;
   }
 }
 </script>
