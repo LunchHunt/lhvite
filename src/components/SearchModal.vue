@@ -1,8 +1,15 @@
 <template>
-  <div class="modal-overlay" @click.self="close">
+  <div class="modal-overlay" v-if="visible" @click.self="close">
     <div class="modal-content bg-stone-50/60 backdrop-blur-lg rounded-xl px-4 py-4">
-      <form @submit.prevent="submitSearch">
-        <input v-model="searchTerm" type="text" placeholder="Search..." class="search-input bg-white rounded-xl p-4 w-full focus:outline-none focus:ring-2 focus:ring-brand" />
+      <form @submit.prevent="handleSubmit">
+        <input 
+          ref="searchInput" 
+          v-model="searchTerm" 
+          @input="$emit('update:modelValue', searchTerm)" 
+          type="text" 
+          placeholder="Search..." 
+          class="search-input bg-white rounded-xl p-4 w-full focus:outline-none focus:ring-2 focus:ring-brand"
+        />
       </form>
     </div>
   </div>
@@ -10,20 +17,39 @@
 
 <script setup>
 import { defineEmits } from 'vue';
-import { ref } from 'vue';
+import { ref, watch, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(['close', 'update:modelValue', 'submit-search']);
 const searchTerm = ref('');
 const router = useRouter();
+const searchInput = ref(null);
+
+const props = defineProps({
+  visible: Boolean,
+  modelValue: String,
+});
+
+// Focus the input when the modal becomes visible
+watch(() => props.visible, async (newVal) => {
+  if (newVal) {
+    await nextTick(); // Wait for the DOM to update
+    if (searchInput.value) {
+      searchInput.value.focus();
+    }
+  }
+});
 
 function close() {
   emit('close');
+  searchTerm.value = ''; // Reset search term when modal is closed
 }
 
-function submitSearch() {
+function handleSubmit() {
   if (searchTerm.value.trim()) {
-    router.push({ path: '/results', query: { search: searchTerm.value } });
+    router.replace({ path: '/results', query: { search: searchTerm.value } });
+    emit('submit-search', searchTerm.value);
+    searchTerm.value = ''; // Reset search term after submission
   }
 }
 </script>
@@ -39,6 +65,7 @@ function submitSearch() {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2000;
 }
 
 .modal-content {

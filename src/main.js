@@ -22,7 +22,9 @@ import {
     FaCompressAlt,
     FaPhoneAlt,
     FaGlobe,
-    MdDeliverydining
+    MdDeliverydining,
+    HiChevronDown,
+    HiChevronUp
 } from "oh-vue-icons/icons";
 import router from './router';
 import './style.css';
@@ -48,7 +50,9 @@ addIcons(
     FaCompressAlt, 
     FaPhoneAlt, 
     FaGlobe,
-    MdDeliverydining
+    MdDeliverydining,
+    HiChevronDown,
+    HiChevronUp
 );
 
 createApp(App).use(router).component("v-icon", OhVueIcon).mount('#app');

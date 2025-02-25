@@ -9,31 +9,48 @@
       <v-icon :name="item.icon" class="nav-icon" />
       <span class="nav-label">{{ item.name }}</span>
     </div>
-    <SearchModal v-if="isModalOpen" @close="isModalOpen = false" />
+    <SearchModal 
+      :visible="isModalOpen" 
+      v-model="searchTerm" 
+      @close="closeModal" 
+      @submit-search="submitSearch"
+    />
   </nav>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import SearchModal from './SearchModal.vue';
+import SearchModal from '@/components/SearchModal.vue';
 
 const router = useRouter();
 const isModalOpen = ref(false);
+const searchTerm = ref('');
 
 const menuItems = [
   { name: 'Home', icon: 'co-home', route: '/' },
   { name: 'List', icon: 'co-list', route: '/list' },
   { name: 'Map', icon: 'co-map', route: '/map' },
-  { name: 'Search', icon: 'co-search', action: 'openModal' },
+  { name: 'Search', icon: 'co-search', action: 'openSearchModal' },
 ];
 
 function handleClick(item) {
   if (item.route) {
     router.push(item.route);
-  } else if (item.action === 'openModal') {
-    isModalOpen.value = true;
+  } else if (item.action === 'openSearchModal') {
+    console.log('Opening modal'); // Debugging log
+    isModalOpen.value = true; // Open the modal
   }
+}
+
+function closeModal() {
+  isModalOpen.value = false; // Close the modal
+}
+
+function submitSearch(newSearchTerm) {
+  searchTerm.value = newSearchTerm;
+  router.push({ path: '/results', query: { search: newSearchTerm } });
+  closeModal(); // Close the modal after submitting the search
 }
 </script>
 

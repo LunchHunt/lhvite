@@ -1,32 +1,66 @@
 <template>
-  <div class="list-container my-18 grid grid-cols-1 md:grid-cols-2 gap-4"> 
+  <div class="list-container my-18 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <SearchResultsBar :searchTerm="searchTerm" />
+    <FilterBar />
+    <ListItem 
+      v-for="deal in dealSearchResults"
+      :key="deal.id"
+      :deal="deal"
+      @show-modal="showDealModal"
+    />
     <DealModal 
-      v-if="selectedDeal"
+      v-if="isDealModalVisible"
       :deal="selectedDeal"
-      :visible="isModalVisible"
-      @close="closeModal"
+      :visible="isDealModalVisible"
+      @close="closeDealModal"
+    />    
+    <SearchModal 
+      v-if="isSearchModalVisible"
+      :visible="isSearchModalVisible"
+      v-model="searchTerm"
+      @close="closeSearchModal"
+      @submit-search="submitSearch"
     />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { deals as dealsData } from '@/data/dealsData.js';
+import { useRoute, useRouter } from 'vue-router';
+import { dealSearchResults } from '@/data/searchResults.js';
 import ListItem from '@/components/ListItem.vue';
 import DealModal from '@/components/DealModal.vue';
+import SearchModal from '@/components/SearchModal.vue';
+import FilterBar from '@/components/FilterBar.vue';
+import SearchResultsBar from '@/components/SearchResultsBar.vue';
 
-const deals = ref(dealsData);
+const route = useRoute();
+const router = useRouter();
+const searchTerm = ref(route.query.search || '');
+// const deals = ref(dealSearchResults);
 const selectedDeal = ref(null);
-const isModalVisible = ref(false);
+const isDealModalVisible = ref(false);
+const isSearchModalVisible = ref(false);
 
-function showModal(deal) {
+function showDealModal(deal) {
   selectedDeal.value = deal;
-  isModalVisible.value = true;
+  isDealModalVisible.value = true;
+  isSearchModalVisible.value = false; // Ensure search modal is closed
 }
 
-function closeModal() {
-  isModalVisible.value = false;
+function closeDealModal() {
+  isDealModalVisible.value = false;
   selectedDeal.value = null;
+}
+
+function closeSearchModal() {
+  isSearchModalVisible.value = false;
+}
+
+function submitSearch(newSearchTerm) {
+  searchTerm.value = newSearchTerm;
+  router.push({ path: '/results', query: { search: newSearchTerm } });
+  closeSearchModal();
 }
 </script>
 
