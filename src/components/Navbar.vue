@@ -1,16 +1,16 @@
 <template>
-  <div class="mx-auto max-w-full px-0 sm:pr-8 lg:pr-8 fixed top-0 left-0 right-0 z-50 ">
+  <div class="navbar mx-auto max-w-full px-0 sm:pr-8 lg:pr-8 fixed top-0 left-0 right-0" :class="isModalOpen ? 'z-0' : 'z-1'">
     <div class="relative flex h-16 justify-between">
       <div class="absolute inset-y-0 right-2 flex items-center">
         <!-- Mobile menu button -->
-        <button v-if="!isOpen" @click="toggleMenu" class="menu-button cursor-pointer drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)] backdrop-blur-sm">
+        <button v-if="!isOpen" @click="toggleMenu" class="menu-button cursor-pointer drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)] backdrop-blur-sm" :class="isModalOpen ? 'z-0' : 'z-1'">
           <span class="sr-only">Toggle Menu</span>
           <v-icon name="co-hamburger-menu" class="block size-8" aria-hidden="true" />
         </button>
       </div>
       <div class="flex items-center justify-center">
         <div class="flex flex-none items-center">
-          <img class="h-16 w-auto drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]" src="/images/logo.svg" alt="Lunch Hunt" />
+          <img class="h-16 w-auto drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)] z-10" src="@/assets/images/logo.svg" alt="Lunch Hunt" />
         </div>
       </div>
     </div>
@@ -63,15 +63,29 @@
       </div>
     </Transition>
 
+    <!-- Add the modal component here too if you want it to appear from navbar -->
+    <SearchModal 
+      :visible="modalStore.isModalOpen" 
+      v-model="modalStore.searchTerm" 
+      @close="modalStore.closeModal" 
+      @submit-search="submitSearch"
+    />
+
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useModalStore } from '@/stores/modalStore';
+import SearchModal from '@/components/SearchModal.vue';
 
 // Get the current year
 const currentYear = new Date().getFullYear();
 const isOpen = ref(false);
+
+const router = useRouter();
+const modalStore = useModalStore();
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
@@ -80,6 +94,12 @@ const toggleMenu = () => {
 const closeMenu = () => {
   isOpen.value = false;
 };
+
+function submitSearch(newSearchTerm) {
+  modalStore.setSearchTerm(newSearchTerm);
+  router.push({ path: '/results', query: { search: newSearchTerm } });
+  modalStore.closeModal();
+}
 </script>
 
 <style scoped>
@@ -91,7 +111,7 @@ const closeMenu = () => {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.8); /* Dark background */
-  z-index: 40;
+  z-index: 30;
 }
 
 /* 🔹 Slide-in Menu */
@@ -102,7 +122,6 @@ const closeMenu = () => {
   width: 75vw;
   max-width: 400px;
   height: 100vh;
-  /* background: #111111; */
   padding: 0px 40px;
   display: flex;
   flex-direction: column;
@@ -113,7 +132,6 @@ const closeMenu = () => {
 
 /* 🔹 Mobile Menu Button */
 .menu-button {
-  z-index: 60;
   position: relative;
   display: inline-flex;
   justify-content: center;

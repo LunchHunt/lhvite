@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-overlay" v-if="visible" @click.self="close">
+  <div class="modal-overlay z-50" v-if="visible" @click.self="close">
     <div class="modal-content bg-stone-50/60 backdrop-blur-lg rounded-xl px-4 py-4">
       <form @submit.prevent="handleSubmit">
         <input 
@@ -61,21 +61,18 @@ function handleSubmit() {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: 30;
 }
 
 .modal-content {
   width: 80vw;
   max-width: 500px;
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 50;
 }
 
-.search-input {
-
-
-
-}
 </style>

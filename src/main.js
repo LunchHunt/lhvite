@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import { createPinia } from 'pinia'
 import App from './App.vue';
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import {
@@ -55,5 +56,5 @@ addIcons(
     HiChevronUp
 );
 
-createApp(App).use(router).component("v-icon", OhVueIcon).mount('#app');
+createApp(App).use(router).use(createPinia()).component("v-icon", OhVueIcon).mount('#app');
  
