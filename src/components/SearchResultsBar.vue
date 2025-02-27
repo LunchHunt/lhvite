@@ -1,5 +1,5 @@
 <template>
-  <div class="search-term-display px-4 m-0 border-2 border-red-200">
+  <div class="search-term-display px-4 m-0 w-full">
     <p v-if="searchTerm">Searching for: <strong>{{ searchTerm }}</strong></p>
     <p v-else>No search term entered.</p>
   </div>

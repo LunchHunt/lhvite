@@ -1,26 +1,29 @@
 <template>
-  <div class="list-container my-18 grid grid-cols-1 md:grid-cols-2 gap-4">
-    <SearchResultsBar :searchTerm="searchTerm" />
-    <FilterBar />
-    <ListItem 
-      v-for="deal in dealSearchResults"
-      :key="deal.id"
-      :deal="deal"
-      @show-modal="showDealModal"
-    />
-    <DealModal 
-      v-if="isDealModalVisible"
-      :deal="selectedDeal"
-      :visible="isDealModalVisible"
-      @close="closeDealModal"
-    />    
-    <SearchModal 
-      v-if="isSearchModalVisible"
-      :visible="isSearchModalVisible"
-      v-model="searchTerm"
-      @close="closeSearchModal"
-      @submit-search="submitSearch"
-    />
+  <div>
+    <div class="flex flex-col w-full pt-20 pb-6">
+      <SearchResultsBar :searchTerm="searchTerm" />
+    </div>
+    <div class="list-container grid grid-cols-1 md:grid-cols-2 gap-4">
+      <ListItem 
+        v-for="deal in dealSearchResults"
+        :key="deal.id"
+        :deal="deal"
+        @show-modal="showDealModal"
+      />
+      <DealModal 
+        v-if="isDealModalVisible"
+        :deal="selectedDeal"
+        :visible="isDealModalVisible"
+        @close="closeDealModal"
+      />    
+      <SearchModal 
+        v-if="isSearchModalVisible"
+        :visible="isSearchModalVisible"
+        v-model="searchTerm"
+        @close="closeSearchModal"
+        @submit-search="submitSearch"
+      />
+    </div>
   </div>
 </template>
 

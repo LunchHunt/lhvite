@@ -1,18 +1,18 @@
 <template>
-  <div class="list-container my-18 grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div class="list-container my-20 grid grid-cols-1 md:grid-cols-2 gap-4">
     <ListItem 
       v-for="deal in deals"
       :key="deal.id"
       :deal="deal"
       @show-modal="showModal"
     />
-    <DealModal 
-      v-if="selectedDeal"
-      :deal="selectedDeal"
-      :visible="isModalVisible"
-      @close="closeModal"
-    />
   </div>
+  <DealModal 
+    v-if="selectedDeal"
+    :deal="selectedDeal"
+    :visible="isModalVisible"
+    @close="closeModal"
+  />
 </template>
 
 <script setup>
@@ -39,5 +39,7 @@ function closeModal() {
 <style scoped>
 .list-container {
   list-style: none; /* Prevents any list-style from being applied */
+  max-width: 100%;
+  overflow-x: hidden;
 }
 </style>

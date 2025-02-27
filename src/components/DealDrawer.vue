@@ -11,14 +11,30 @@
     </div>
 
     <Transition name="slide-up">
-      <div v-show="isOpen" class="deal-drawer bg-gradient-to-b from-stone-50 to-white">
-        <v-icon name="io-close" class="close-button" @click="closeDrawer" />
+      <div 
+        v-show="isOpen" 
+        class="deal-drawer bg-gradient-to-b from-stone-50 to-white"
+      >
+        <v-icon 
+          name="io-close" 
+          class="close-button" 
+          @click="closeDrawer" 
+        />
         <div class="details flex flex-col justify-between">
           <div class="flex flex-col flex-grow p-5">
             <!-- deal details -->
             <div class="flex flex-row justify-between mt-8">
-              <h3 v-if="deal" class="text-2xl font-bold">{{ deal.title }}</h3>
-              <span v-if="deal" class="inline-flex shrink-0 items-center rounded-full bg-green-50 px-2 py-0.5 text-lg font-medium text-green-700 ring-1 ring-green-600/20 ring-inset">{{ deal.distance }} km</span>
+              <h3 v-if="deal" class="text-2xl font-bold">
+                {{ deal.title }}
+              </h3>
+              <span 
+                v-if="deal" 
+                class="inline-flex shrink-0 items-center rounded-full 
+                       bg-green-50 px-2 py-0.5 text-lg font-medium 
+                       text-green-700 ring-1 ring-green-600/20 ring-inset"
+              >
+                {{ deal.distance }} km
+              </span>
             </div>
             <p v-if="deal" class="text-md py-2">{{ deal.restaurant }}</p>
             <p v-if="deal" class="text-lg">{{ deal.price }}</p>
@@ -27,16 +43,32 @@
             <!-- action buttons-->
             <div v-if="deal" class="flex flex-row justify-evenly my-auto">
               <button class="bg-blue-500 text-white px-4 py-2 rounded-md">
-                <v-icon name="fa-share" class="block size-6" aria-hidden="true" />
+                <v-icon 
+                  name="fa-share" 
+                  class="block size-6" 
+                  aria-hidden="true" 
+                />
               </button>
               <button class="bg-blue-500 text-white px-4 py-2 rounded-md">
-                <v-icon name="md-deliverydining" class="block size-6" aria-hidden="true" />
+                <v-icon 
+                  name="md-deliverydining" 
+                  class="block size-6" 
+                  aria-hidden="true" 
+                />
               </button>
               <button class="bg-blue-500 text-white px-4 py-2 rounded-md">
-                <v-icon name="fa-globe" class="block size-6" aria-hidden="true" />
+                <v-icon 
+                  name="fa-globe" 
+                  class="block size-6" 
+                  aria-hidden="true" 
+                />
               </button>
               <button class="bg-blue-500 text-white px-4 py-2 rounded-md">
-                <v-icon name="fa-phone-alt" class="block size-6" aria-hidden="true" />
+                <v-icon 
+                  name="fa-phone-alt" 
+                  class="block size-6" 
+                  aria-hidden="true" 
+                />
               </button>          
             </div>
           </div>
@@ -44,7 +76,16 @@
 
         <!-- map -->
         <div class="map bg-green-200 w-full flex-none">
-          <iframe class="w-full h-full" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=University of Oxford&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+          <iframe 
+            class="w-full h-full" 
+            frameborder="0" 
+            scrolling="no" 
+            marginheight="0" 
+            marginwidth="0" 
+            src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en
+                 &amp;q=University of Oxford&amp;t=&amp;z=14&amp;ie=UTF8
+                 &amp;iwloc=B&amp;output=embed"
+          ></iframe>
         </div>
         
       </div>

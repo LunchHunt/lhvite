@@ -1,13 +1,14 @@
 <script setup>
 import Navbar from '@/components/Navbar.vue';
 import BottomNav from '@/components/BottomNav.vue';
+import Map from '@/components/Map.vue';
 </script>
 
 <template>
   <div>
     <Navbar />
     <div class="container mx-auto">
-      <h1>Map</h1>
+      <Map />
     </div>
     <BottomNav />
   </div>

@@ -1,6 +1,9 @@
 <template>
   <div class="deals-container">
-    <div class="deals-wrapper" :style="{ transform: `translateY(-${activeIndex * 100}vh)` }">
+    <div 
+      class="deals-wrapper" 
+      :style="{ transform: `translateY(-${activeIndex * 100}vh)` }"
+    >
       <div v-for="(deal, index) in deals" :key="index" class="deal-item">
         <template v-if="deal.video">
           <video autoplay loop muted playsinline class="deal-image">
@@ -9,7 +12,10 @@
           </video>
         </template>
         <template v-else>
-          <div :style="{ backgroundImage: `url(${deal.image})` }" class="deal-image"></div>
+          <div 
+            :style="{ backgroundImage: `url(${deal.image})` }" 
+            class="deal-image"
+          ></div>
         </template>
         <DealCard :deal="deal" @open-drawer="openDrawer" />
       </div>
@@ -122,7 +128,11 @@ onUnmounted(() => {
   position: relative; /* Ensures it stays inside the deal-item */
   bottom: 60px;
   padding: 1rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    to top, 
+    rgba(0, 0, 0, 1) 0%, 
+    rgba(0, 0, 0, 0) 100%
+  );
   margin-top: auto; /* Ensures it remains at the bottom of its parent */
   z-index: 1; /* Ensures it is above the background image */
 }

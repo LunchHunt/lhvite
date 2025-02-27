@@ -1,19 +1,28 @@
 <template>
   <div class="deal-actions">
     <!-- <button class="action-button">
-      <v-icon name="io-restaurant" class="action-icon drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]" />
+      <v-icon 
+        name="io-restaurant" 
+        class="action-icon drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]" 
+      />
     </button> -->
     <!-- Like Button -->
     <button class="action-button" @click="toggleLike">
-      <v-icon name="fa-heart" :class="{ 'text-brand': isLiked }" class="action-icon drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]" />
+      <v-icon 
+        name="fa-heart" 
+        :class="{ 'text-brand': isLiked }" 
+        class="action-icon drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]" 
+      />
       <div class="action-text">{{ likes }}</div>
     </button>
 
     <!-- Share Button -->
     <button class="action-button" @click="shareDeal">
-      <v-icon name="fa-share" class="action-icon drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]" />
+      <v-icon 
+        name="fa-share" 
+        class="action-icon drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]" 
+      />
     </button>
-
   </div>
 </template>
 
@@ -89,6 +98,5 @@ const shareDeal = () => {
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
-
 }
 </style>

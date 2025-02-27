@@ -1,68 +1,62 @@
 <template>
-  <div class="filter-bar flex flex-row justify-center">
-    <div class="grid grid-cols-1 w-1/2 rounded-lg px-2">
-      <button @click="togglePriceSort" class="w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-brand sm:text-sm/6">
-        Price <v-icon :name="priceSortIcon" class="pointer-events-none mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" aria-hidden="true" />
-      </button>
-    </div>
-    <div class="grid grid-cols-1 w-1/2 rounded-lg px-2">
-      <button @click="toggleDistanceSort" class="w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-brand sm:text-sm/6">
-        Distance <v-icon :name="distanceSortIcon" class="pointer-events-none mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" aria-hidden="true" />
-      </button>
-    </div>
+  <div class="flex justify-end space-x-3 p-3 mr-16">
+    <button 
+      @click="setSort('price')" 
+      class="px-4 py-2 rounded-md text-xs font-semibold shadow-sm"
+      :class="activeButtonClass('price')"
+    >
+      Best Deal
+    </button>
+    <button 
+      @click="setSort('distance')" 
+      class="px-4 py-2 rounded-md text-xs font-semibold shadow-sm"
+      :class="activeButtonClass('distance')"
+    >
+      Closest
+    </button>
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, onMounted } from 'vue';
 import { defineEmits } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const emit = defineEmits(['sortChange']);
-const selectedPriceSort = ref('asc');
-const selectedDistanceSort = ref('asc');
-
-
-const priceSortIcon = ref('hi-chevron-up');
-const distanceSortIcon = ref('hi-chevron-up');
+const currentSort = ref('');
 
 const route = useRoute();
 const router = useRouter();
 
-function togglePriceSort() {
-  selectedPriceSort.value = selectedPriceSort.value === 'asc' ? 'desc' : 'asc';
-  
-  priceSortIcon.value = selectedPriceSort.value === 'asc' ? 'hi-chevron-up' : 'hi-chevron-down';
+onMounted(() => {
+  // Initialize from URL query params if present
+  if (route.query.sort) {
+    currentSort.value = route.query.sort;
+  }
+});
+
+function setSort(sortType) {
+  currentSort.value = sortType;
   updateQueryParams();
   emitSortChange();
 }
 
-function toggleDistanceSort() {
-  selectedDistanceSort.value = selectedDistanceSort.value === 'asc' ? 'desc' : 'asc';
-  
-  distanceSortIcon.value = selectedDistanceSort.value === 'asc' ? 'hi-chevron-up' : 'hi-chevron-down';
-  updateQueryParams();
-  emitSortChange();
+function activeButtonClass(sortType) {
+  return currentSort.value === sortType 
+    ? 'bg-brand text-white' 
+    : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50';
 }
 
 function updateQueryParams() {
   router.push({
     query: {
       ...route.query,
-      priceSort: selectedPriceSort.value,
-      distanceSort: selectedDistanceSort.value
+      sort: currentSort.value
     }
   });
 }
 
 function emitSortChange() {
-  emit('sortChange', {
-    price: selectedPriceSort.value,
-    distance: selectedDistanceSort.value
-  });
+  emit('sortChange', { sort: currentSort.value });
 }
 </script>
-
-<style scoped>
-/* Add any additional styles if needed */
-</style> 

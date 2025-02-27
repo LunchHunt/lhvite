@@ -1,6 +1,8 @@
 <template>
   <div class="modal-overlay z-50" v-if="visible" @click.self="close">
-    <div class="modal-content bg-stone-50/60 backdrop-blur-lg rounded-xl px-4 py-4">
+    <div 
+      class="modal-content bg-stone-50/60 backdrop-blur-lg rounded-xl px-4 py-4"
+    >
       <form @submit.prevent="handleSubmit">
         <input 
           ref="searchInput" 
@@ -8,7 +10,8 @@
           @input="$emit('update:modelValue', searchTerm)" 
           type="text" 
           placeholder="Search..." 
-          class="search-input bg-white rounded-xl p-4 w-full focus:outline-none focus:ring-2 focus:ring-brand"
+          class="search-input bg-white rounded-xl p-4 w-full focus:outline-none
+                 focus:ring-2 focus:ring-brand"
         />
       </form>
     </div>
@@ -47,7 +50,10 @@ function close() {
 
 function handleSubmit() {
   if (searchTerm.value.trim()) {
-    router.replace({ path: '/results', query: { search: searchTerm.value } });
+    router.replace({ 
+      path: '/results', 
+      query: { search: searchTerm.value } 
+    });
     emit('submit-search', searchTerm.value);
     searchTerm.value = ''; // Reset search term after submission
   }
@@ -61,7 +67,7 @@ function handleSubmit() {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,5 +80,4 @@ function handleSubmit() {
   box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
   z-index: 50;
 }
-
 </style>
