@@ -7,7 +7,7 @@
       <button class="close-button" @click="closeModal">
         <v-icon 
           name="io-close" 
-          class="block size-8 text-white drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]" 
+          class="block size-8 text-white drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)] z-100" 
           aria-hidden="true" 
         />
       </button>
@@ -27,7 +27,7 @@
         <button class="expand-button" @click="toggleImage">
           <v-icon 
             :name="isImageExpanded ? 'gi-contract' : 'gi-expand'" 
-            class="text-white block size-6" 
+            class="text-white block size-6 z-10" 
             :style="{ color: 'white' }" 
             aria-hidden="true" 
           />
@@ -161,7 +161,7 @@ onMounted(() => {
   top: 0;
   left: 0;
   height: 100%; /* Full height of the modal */
-  z-index: 1002; /* Bring to front */
+  z-index: 10; /* Bring to front */
 }
  
 .deal-image {

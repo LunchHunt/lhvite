@@ -25,7 +25,9 @@ import {
     FaGlobe,
     MdDeliverydining,
     HiChevronDown,
-    HiChevronUp
+    HiChevronUp,
+    RiPinDistanceFill,
+    MdAttachmoney
 } from "oh-vue-icons/icons";
 import router from './router';
 import './style.css';
@@ -53,7 +55,9 @@ addIcons(
     FaGlobe,
     MdDeliverydining,
     HiChevronDown,
-    HiChevronUp
+    HiChevronUp,
+    RiPinDistanceFill,
+    MdAttachmoney
 );
 
 createApp(App).use(router).use(createPinia()).component("v-icon", OhVueIcon).mount('#app');

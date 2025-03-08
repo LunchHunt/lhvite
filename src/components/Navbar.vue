@@ -239,7 +239,7 @@ function submitSearch(newSearchTerm) {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 4px;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 6px;
 }

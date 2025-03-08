@@ -23,6 +23,7 @@
         class="action-icon drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]" 
       />
     </button>
+    
   </div>
 </template>
 
