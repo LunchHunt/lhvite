@@ -28,8 +28,8 @@
 </template>
 
 <script setup>
-import { defineEmits } from 'vue';
-import DealActions from '@/components/DealActions.vue';
+import { defineEmits } from "vue";
+import DealActions from "@/components/DealActions.vue";
 
 const props = defineProps({
   deal: {

@@ -25,10 +25,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-import DealCard from '@/components/DealCard.vue';
-import DealDrawer from '@/components/DealDrawer.vue';
-import { deals as dealsData } from '@/data/dealsData.js';
+import { ref, onMounted, onUnmounted } from "vue";
+import DealCard from "@/components/DealCard.vue";
+import DealDrawer from "@/components/DealDrawer.vue";
+import { deals as dealsData } from "@/data/dealsData.js";
 
 const deals = ref(dealsData);
 
@@ -48,9 +48,9 @@ const changeSlide = (direction) => {
   if (isScrolling.value) return;
   isScrolling.value = true;
 
-  if (direction === 'next' && activeIndex.value < deals.value.length - 1) {
+  if (direction === "next" && activeIndex.value < deals.value.length - 1) {
     activeIndex.value++;
-  } else if (direction === 'prev' && activeIndex.value > 0) {
+  } else if (direction === "prev" && activeIndex.value > 0) {
     activeIndex.value--;
   }
 
@@ -61,9 +61,9 @@ const changeSlide = (direction) => {
 
 const handleWheel = (event) => {
   if (event.deltaY > 0) {
-    changeSlide('next');
+    changeSlide("next");
   } else if (event.deltaY < 0) {
-    changeSlide('prev');
+    changeSlide("prev");
   }
 };
 
@@ -74,22 +74,22 @@ const handleTouchStart = (event) => {
 const handleTouchEnd = (event) => {
   touchEndY.value = event.changedTouches[0].clientY;
   if (touchStartY.value - touchEndY.value > 50) {
-    changeSlide('next');
+    changeSlide("next");
   } else if (touchStartY.value - touchEndY.value < -50) {
-    changeSlide('prev');
+    changeSlide("prev");
   }
 };
 
 onMounted(() => {
-  window.addEventListener('wheel', handleWheel);
-  window.addEventListener('touchstart', handleTouchStart);
-  window.addEventListener('touchend', handleTouchEnd);
+  window.addEventListener("wheel", handleWheel);
+  window.addEventListener("touchstart", handleTouchStart);
+  window.addEventListener("touchend", handleTouchEnd);
 });
 
 onUnmounted(() => {
-  window.removeEventListener('wheel', handleWheel);
-  window.removeEventListener('touchstart', handleTouchStart);
-  window.removeEventListener('touchend', handleTouchEnd);
+  window.removeEventListener("wheel", handleWheel);
+  window.removeEventListener("touchstart", handleTouchStart);
+  window.removeEventListener("touchend", handleTouchEnd);
 });
 </script>
 

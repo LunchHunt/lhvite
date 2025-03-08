@@ -19,7 +19,7 @@
 let isChecked = false;
 
 function handleCheckboxChange() {
-  console.log('handleCheckboxChange');
+  console.log("handleCheckboxChange");
   isChecked = !isChecked;
 }
 </script>

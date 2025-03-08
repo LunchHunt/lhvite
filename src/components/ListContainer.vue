@@ -16,10 +16,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { deals as dealsData } from '@/data/dealsData.js';
-import ListItem from '@/components/ListItem.vue';
-import DealModal from '@/components/DealModal.vue';
+import { ref } from "vue";
+import { deals as dealsData } from "@/data/dealsData.js";
+import ListItem from "@/components/ListItem.vue";
+import DealModal from "@/components/DealModal.vue";
 
 const deals = ref(dealsData);
 const selectedDeal = ref(null);

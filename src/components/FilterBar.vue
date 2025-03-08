@@ -23,13 +23,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { defineEmits } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import ToggleDistancePrice from './ToggleDistancePrice.vue';
+import { onMounted, ref } from "vue";
+import { defineEmits } from "vue"; import { useRoute, useRouter } from "vue-router";
+import ToggleDistancePrice from "./ToggleDistancePrice.vue";
 
-const emit = defineEmits(['sortChange']);
-const currentSort = ref('');
+const emit = defineEmits(["sortChange"]);
+const currentSort = ref("");
 
 const route = useRoute();
 const router = useRouter();
@@ -48,21 +47,21 @@ function setSort(sortType) {
 }
 
 function activeButtonClass(sortType) {
-  return currentSort.value === sortType 
-    ? 'bg-brand text-white' 
-    : 'bg-white/80 text-gray-700 border border-gray-300 hover:bg-gray-50';
+  return currentSort.value === sortType
+    ? "bg-brand text-white"
+    : "bg-white/80 text-gray-700 border border-gray-300 hover:bg-gray-50";
 }
 
 function updateQueryParams() {
   router.push({
     query: {
       ...route.query,
-      sort: currentSort.value
-    }
+      sort: currentSort.value,
+    },
   });
 }
 
 function emitSortChange() {
-  emit('sortChange', { sort: currentSort.value });
+  emit("sortChange", { sort: currentSort.value });
 }
 </script>

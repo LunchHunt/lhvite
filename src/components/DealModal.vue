@@ -90,7 +90,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref, onMounted } from 'vue';
+import { defineEmits, defineProps, onMounted, ref } from "vue";
 
 const props = defineProps({
   deal: {
@@ -103,11 +103,11 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(["close"]);
 const isImageExpanded = ref(false);
 
 function closeModal() {
-  emit('close');
+  emit("close");
 }
 
 function toggleImage() {
@@ -115,11 +115,11 @@ function toggleImage() {
 }
 
 onMounted(() => {
-  const modalContent = document.querySelector('.modal-content');
+  const modalContent = document.querySelector(".modal-content");
   if (modalContent) {
     const height = modalContent.offsetHeight;
-    modalContent.style.minWidth = `375px`; 
-    modalContent.style.width = `${height * .66}px`; 
+    modalContent.style.minWidth = "375px";
+    modalContent.style.width = `${height * 0.66}px`;
   }
 });
 </script>

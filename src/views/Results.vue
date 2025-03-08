@@ -1,7 +1,7 @@
 <script setup>
-import Navbar from '@/components/Navbar.vue';
-import BottomNav from '@/components/BottomNav.vue';
-import SearchResultsContainer from '@/components/SearchResultsContainer.vue';
+import Navbar from "@/components/Navbar.vue";
+import BottomNav from "@/components/BottomNav.vue";
+import SearchResultsContainer from "@/components/SearchResultsContainer.vue";
 </script>
 
 <template>

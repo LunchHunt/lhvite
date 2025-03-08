@@ -19,12 +19,12 @@
 </template>
 
 <script setup>
-import { defineEmits } from 'vue';
-import { ref, watch, nextTick } from 'vue';
-import { useRouter } from 'vue-router';
+import { defineEmits } from "vue";
+import { ref, watch, nextTick } from "vue";
+import { useRouter } from "vue-router";
 
-const emit = defineEmits(['close', 'update:modelValue', 'submit-search']);
-const searchTerm = ref('');
+const emit = defineEmits(["close", "update:modelValue", "submit-search"]);
+const searchTerm = ref("");
 const router = useRouter();
 const searchInput = ref(null);
 
@@ -34,28 +34,31 @@ const props = defineProps({
 });
 
 // Focus the input when the modal becomes visible
-watch(() => props.visible, async (newVal) => {
-  if (newVal) {
-    await nextTick(); // Wait for the DOM to update
-    if (searchInput.value) {
-      searchInput.value.focus();
+watch(
+  () => props.visible,
+  async (newVal) => {
+    if (newVal) {
+      await nextTick(); // Wait for the DOM to update
+      if (searchInput.value) {
+        searchInput.value.focus();
+      }
     }
-  }
-});
+  },
+);
 
 function close() {
-  emit('close');
-  searchTerm.value = ''; // Reset search term when modal is closed
+  emit("close");
+  searchTerm.value = ""; // Reset search term when modal is closed
 }
 
 function handleSubmit() {
   if (searchTerm.value.trim()) {
-    router.replace({ 
-      path: '/results', 
-      query: { search: searchTerm.value } 
+    router.replace({
+      path: "/results",
+      query: { search: searchTerm.value },
     });
-    emit('submit-search', searchTerm.value);
-    searchTerm.value = ''; // Reset search term after submission
+    emit("submit-search", searchTerm.value);
+    searchTerm.value = ""; // Reset search term after submission
   }
 }
 </script>

@@ -94,7 +94,7 @@
 </template>
 
 <script setup>
-import { ref, defineExpose } from 'vue';
+import { ref, defineExpose } from "vue";
 
 const isOpen = ref(false);
 const isOverlayVisible = ref(false);
@@ -105,12 +105,12 @@ const openDrawer = async (selectedDeal) => {
   isOverlayVisible.value = true;
   isOpen.value = true;
   document.body.classList.add("no-scroll");
-  console.log('Overlay should be visible:', isOverlayVisible.value);
+  console.log("Overlay should be visible:", isOverlayVisible.value);
 };
 
 const closeDrawer = () => {
   isOpen.value = false;
-  
+
   setTimeout(() => {
     isOverlayVisible.value = false;
     document.body.classList.remove("no-scroll");

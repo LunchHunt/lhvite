@@ -1,7 +1,7 @@
 <script setup>
-import Navbar from '@/components/Navbar.vue';
-import ListContainer from '@/components/ListContainer.vue';
-import BottomNav from '@/components/BottomNav.vue';
+import Navbar from "@/components/Navbar.vue";
+import ListContainer from "@/components/ListContainer.vue";
+import BottomNav from "@/components/BottomNav.vue";
 </script>
 
 <template>

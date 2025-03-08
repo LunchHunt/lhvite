@@ -28,10 +28,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const props = defineProps({
-  initialLikes: { type: Number, default: 0 }
+  initialLikes: { type: Number, default: 0 },
 });
 
 const isLiked = ref(false);
@@ -44,13 +44,14 @@ const toggleLike = () => {
 
 const shareDeal = () => {
   if (navigator.share) {
-    navigator.share({
-      title: 'Check out this deal!',
-      text: 'I found this amazing deal you might like.',
-      url: window.location.href
-    })
-    .then(() => console.log('Deal shared successfully!'))
-    .catch((error) => console.error('Error sharing deal:', error));
+    navigator
+      .share({
+        title: "Check out this deal!",
+        text: "I found this amazing deal you might like.",
+        url: window.location.href,
+      })
+      .then(() => console.log("Deal shared successfully!"))
+      .catch((error) => console.error("Error sharing deal:", error));
   } else {
     alert("Web Share API is not supported in your browser.");
   }

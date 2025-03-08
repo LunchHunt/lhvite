@@ -19,31 +19,31 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
-import SearchModal from '@/components/SearchModal.vue';
-import { useModalStore } from '@/stores/modalStore';
+import { useRouter } from "vue-router";
+import SearchModal from "@/components/SearchModal.vue";
+import { useModalStore } from "@/stores/modalStore";
 
 const router = useRouter();
 const modalStore = useModalStore();
 
 const menuItems = [
-  { name: 'Home', icon: 'co-home', route: '/' },
-  { name: 'List', icon: 'co-list', route: '/list' },
-  { name: 'Map', icon: 'co-map', route: '/map' },
-  { name: 'Search', icon: 'co-search', action: 'openSearchModal' },
+  { name: "Home", icon: "co-home", route: "/" },
+  { name: "List", icon: "co-list", route: "/list" },
+  { name: "Map", icon: "co-map", route: "/map" },
+  { name: "Search", icon: "co-search", action: "openSearchModal" },
 ];
 
 function handleClick(item) {
   if (item.route) {
     router.push(item.route);
-  } else if (item.action === 'openSearchModal') {
+  } else if (item.action === "openSearchModal") {
     modalStore.openModal();
   }
 }
 
 function submitSearch(newSearchTerm) {
   modalStore.setSearchTerm(newSearchTerm);
-  router.push({ path: '/results', query: { search: newSearchTerm } });
+  router.push({ path: "/results", query: { search: newSearchTerm } });
   modalStore.closeModal();
 }
 </script>

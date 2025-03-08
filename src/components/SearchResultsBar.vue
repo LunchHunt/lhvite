@@ -6,19 +6,22 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
-import { computed, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { defineProps } from "vue";
+import { computed, watch } from "vue";
+import { useRoute } from "vue-router";
 
 const route = useRoute();
 
-const searchTerm = computed(() => route.query.search || '');
+const searchTerm = computed(() => route.query.search || "");
 
 // Watch for changes in the route's query parameters
-watch(() => route.query.search, (newSearchTerm) => {
-  // This will trigger a reactivity update
-  console.log('Search term updated:', newSearchTerm);
-});
+watch(
+  () => route.query.search,
+  (newSearchTerm) => {
+    // This will trigger a reactivity update
+    console.log("Search term updated:", newSearchTerm);
+  },
+);
 </script>
 
 <style scoped>

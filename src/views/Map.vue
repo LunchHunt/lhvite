@@ -1,7 +1,7 @@
 <script setup>
-import Navbar from '@/components/Navbar.vue';
-import BottomNav from '@/components/BottomNav.vue';
-import Map from '@/components/Map.vue';
+import Navbar from "@/components/Navbar.vue";
+import BottomNav from "@/components/BottomNav.vue";
+import Map from "@/components/Map.vue";
 </script>
 
 <template>

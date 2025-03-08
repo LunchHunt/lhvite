@@ -5,8 +5,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { loadGoogleMapsApi } from '../utils/googleMaps';
+import { ref, onMounted } from "vue";
+import { loadGoogleMapsApi } from "../utils/googleMaps";
 
 const mapRef = ref(null);
 let map = null;
@@ -16,7 +16,7 @@ onMounted(async () => {
     await loadGoogleMapsApi();
     initMap();
   } catch (error) {
-    console.error('Failed to load Google Maps API:', error);
+    console.error("Failed to load Google Maps API:", error);
   }
 });
 
@@ -34,11 +34,11 @@ function initMap() {
       mapTypeControl: false,
       // Position controls higher on the map
       zoomControlOptions: {
-        position: google.maps.ControlPosition.RIGHT_CENTER
+        position: google.maps.ControlPosition.RIGHT_CENTER,
       },
     });
   } else {
-    console.error('Google Maps API not loaded');
+    console.error("Google Maps API not loaded");
   }
 }
 </script>

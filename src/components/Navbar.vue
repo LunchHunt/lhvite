@@ -131,11 +131,11 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted, onUnmounted } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
-import { useModalStore } from '@/stores/modalStore';
-import SearchModal from '@/components/SearchModal.vue';
-import FilterBar from '@/components/FilterBar.vue';
+import { ref, computed, watch, onMounted, onUnmounted } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { useModalStore } from "@/stores/modalStore";
+import SearchModal from "@/components/SearchModal.vue";
+import FilterBar from "@/components/FilterBar.vue";
 
 // Get the current year
 const currentYear = new Date().getFullYear();
@@ -146,7 +146,7 @@ const route = useRoute();
 const modalStore = useModalStore();
 
 const isFilterBarVisible = computed(() => {
-  return route.path === '/results' || route.path === '/list';
+  return route.path === "/results" || route.path === "/list";
 });
 
 const toggleMenu = () => {
@@ -162,41 +162,41 @@ watch(
   () => route.path,
   () => {
     closeMenu();
-  }
+  },
 );
 
 // Watch for changes to isOpen and manage body scroll
 watch(isOpen, (newValue) => {
   if (newValue) {
     // When menu opens, prevent body scrolling
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.width = "100%";
   } else {
     // When menu closes, restore body scrolling
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.width = '';
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.width = "";
   }
 });
 
 // Ensure scrolling is enabled when component is mounted
 onMounted(() => {
-  document.body.style.overflow = '';
-  document.body.style.position = '';
-  document.body.style.width = '';
+  document.body.style.overflow = "";
+  document.body.style.position = "";
+  document.body.style.width = "";
 });
 
 // Clean up when component is unmounted
 onUnmounted(() => {
-  document.body.style.overflow = '';
-  document.body.style.position = '';
-  document.body.style.width = '';
+  document.body.style.overflow = "";
+  document.body.style.position = "";
+  document.body.style.width = "";
 });
 
 function submitSearch(newSearchTerm) {
   modalStore.setSearchTerm(newSearchTerm);
-  router.push({ path: '/results', query: { search: newSearchTerm } });
+  router.push({ path: "/results", query: { search: newSearchTerm } });
   modalStore.closeModal();
 }
 </script>

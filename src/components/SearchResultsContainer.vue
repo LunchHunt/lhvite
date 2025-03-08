@@ -28,18 +28,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { dealSearchResults } from '@/data/searchResults.js';
-import ListItem from '@/components/ListItem.vue';
-import DealModal from '@/components/DealModal.vue';
-import SearchModal from '@/components/SearchModal.vue';
-import FilterBar from '@/components/FilterBar.vue';
-import SearchResultsBar from '@/components/SearchResultsBar.vue';
+import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { dealSearchResults } from "@/data/searchResults.js";
+import ListItem from "@/components/ListItem.vue";
+import DealModal from "@/components/DealModal.vue";
+import SearchModal from "@/components/SearchModal.vue";
+import FilterBar from "@/components/FilterBar.vue";
+import SearchResultsBar from "@/components/SearchResultsBar.vue";
 
 const route = useRoute();
 const router = useRouter();
-const searchTerm = ref(route.query.search || '');
+const searchTerm = ref(route.query.search || "");
 // const deals = ref(dealSearchResults);
 const selectedDeal = ref(null);
 const isDealModalVisible = ref(false);
@@ -62,7 +62,7 @@ function closeSearchModal() {
 
 function submitSearch(newSearchTerm) {
   searchTerm.value = newSearchTerm;
-  router.push({ path: '/results', query: { search: newSearchTerm } });
+  router.push({ path: "/results", query: { search: newSearchTerm } });
   closeSearchModal();
 }
 </script>
